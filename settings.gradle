@@ -1,0 +1,11 @@
+pluginManagement {
+    repositories {
+        maven { url 'https://repo.spring.io/release' }
+        gradlePluginPortal()
+    }
+}
+
+rootProject.name = 'spring-native'
+include ':hello-world'
+
+project(':hello-world').projectDir = "$rootDir/hello-world" as File

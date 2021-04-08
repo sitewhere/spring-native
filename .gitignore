@@ -1,0 +1,14 @@
+/bin
+/deploy
+/target
+
+### Gradle ###
+build
+.gradle*
+/.settings/
+/.project
+/.classpath
+
+.classpath
+bin/
+.settings/

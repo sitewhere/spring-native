@@ -1,0 +1,33 @@
+plugins {
+    id 'org.springframework.boot' version '2.4.4' apply false
+    id 'org.springframework.experimental.aot' version '0.9.1' apply false
+	id 'com.github.hierynomus.license' version '0.15.0' 
+    id 'java'
+}
+
+allprojects {
+	group = 'com.sitewhere'
+	version = '1.0.0'
+	
+	repositories {
+        mavenLocal()
+		mavenCentral()
+		maven { url 'https://repo.spring.io/release' }
+	}
+}
+
+subprojects {
+	apply plugin: "com.github.hierynomus.license"
+	license {
+		header rootProject.file('HEADER')
+		include "**/*.java"
+	}
+
+	apply plugin: 'java'
+	sourceCompatibility = 1.8
+	targetCompatibility = 1.8
+
+	dependencies {	
+        implementation platform(org.springframework.boot.gradle.plugin.SpringBootPlugin.BOM_COORDINATES)
+	}
+}

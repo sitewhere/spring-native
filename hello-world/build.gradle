@@ -1,0 +1,20 @@
+description = 'Hello World Example'
+
+apply plugin: 'org.springframework.boot'
+springBoot  {
+    mainClass = 'com.sitewhere.HelloWorldApplication'
+}
+
+apply plugin: 'org.springframework.experimental.aot'
+bootBuildImage {
+    imageName = "docker.io/sitewhere/${project.name}:${project. version}"
+    builder = "paketobuildpacks/builder:tiny"
+    environment = [
+        "BP_NATIVE_IMAGE" : "true",
+        "BP_NATIVE_IMAGE_BUILD_ARGUMENTS" : "-H:+ReportExceptionStackTraces --verbose"
+    ]
+}
+
+dependencies {
+    implementation 'org.springframework.boot:spring-boot-starter'
+}
