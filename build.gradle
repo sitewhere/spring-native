@@ -6,28 +6,28 @@ plugins {
 }
 
 allprojects {
-	group = 'com.sitewhere'
-	version = '1.0.0'
+    group = 'com.sitewhere'
+    version = '1.0.0'
 	
-	repositories {
+    repositories {
         mavenLocal()
-		mavenCentral()
-		maven { url 'https://repo.spring.io/release' }
-	}
+        mavenCentral()
+        maven { url 'https://repo.spring.io/release' }
+    }
 }
 
 subprojects {
-	apply plugin: "com.github.hierynomus.license"
-	license {
-		header rootProject.file('HEADER')
-		include "**/*.java"
-	}
+    apply plugin: "com.github.hierynomus.license"
+    license {
+        header rootProject.file('HEADER')
+        include "**/*.java"
+    }
 
-	apply plugin: 'java'
-	sourceCompatibility = 1.8
-	targetCompatibility = 1.8
+    apply plugin: 'java'
+    sourceCompatibility = 1.8
+    targetCompatibility = 1.8
 
-	dependencies {	
+    dependencies {	
         implementation platform(org.springframework.boot.gradle.plugin.SpringBootPlugin.BOM_COORDINATES)
-	}
+    }
 }
