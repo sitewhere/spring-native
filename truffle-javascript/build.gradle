@@ -1,0 +1,23 @@
+description = 'Truffle JavaScript Example'
+
+apply plugin: 'org.springframework.boot'
+springBoot  {
+    mainClass = 'com.sitewhere.TruffleJavaScriptApplication'
+}
+
+apply plugin: 'org.springframework.experimental.aot'
+bootBuildImage {
+    imageName = "docker.io/sitewhere/${project.name}:${project. version}"
+    builder = "paketobuildpacks/builder:tiny"
+    environment = [
+        "BP_NATIVE_IMAGE" : "true",
+        "BP_NATIVE_IMAGE_BUILD_ARGUMENTS" : "-H:+ReportExceptionStackTraces --verbose --language:js"
+    ]
+}
+
+dependencies {
+    implementation 'org.springframework.boot:spring-boot-starter'
+
+    // Allows use of Truffle framework from Java code.
+    implementation group: 'org.graalvm.nativeimage', name: 'svm', version: '21.0.0.2'
+}

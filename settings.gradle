@@ -7,5 +7,7 @@ pluginManagement {
 
 rootProject.name = 'spring-native'
 include ':hello-world'
+include ':truffle-javascript'
 
 project(':hello-world').projectDir = "$rootDir/hello-world" as File
+project(':truffle-javascript').projectDir = "$rootDir/truffle-javascript" as File
