@@ -20,17 +20,16 @@ import org.apache.commons.logging.LogFactory;
 import org.graalvm.polyglot.Context;
 import org.graalvm.polyglot.Value;
 import org.springframework.beans.factory.InitializingBean;
+import org.springframework.stereotype.Component;
 
 /**
- * Logs the result of JavaScript execution on bean initialization.
+ * Logs result of JavaScript computation on bean initialization.
  */
-public class TruffleJavaScript implements InitializingBean {
+@Component
+public class JavaScriptExample implements InitializingBean {
 
     /** Static logger */
-    private static Log LOGGER = LogFactory.getLog(TruffleJavaScript.class);
-
-    /** JavaScript language indicator for polyglot impl */
-    private static final String LANGUAGE_JAVASCRIPT = "js";
+    private static Log LOGGER = LogFactory.getLog(JavaScriptExample.class);
 
     /*
      * @see org.springframework.beans.factory.InitializingBean#afterPropertiesSet()
@@ -38,7 +37,7 @@ public class TruffleJavaScript implements InitializingBean {
     @Override
     public void afterPropertiesSet() throws Exception {
 	Context context = Context.create();
-	Value result = context.eval(LANGUAGE_JAVASCRIPT, "({ id: 42, text: '42', arr: [1,42,3] " + "})");
+	Value result = context.eval("js", "({ id: 42, text: '42', arr: [1,42,3] " + "})");
 	String text = result.getMember("text").asString();
 	LOGGER.info(String.format("Found JavaScript value: %s", text));
     }

@@ -19,5 +19,5 @@ dependencies {
     implementation 'org.springframework.boot:spring-boot-starter'
 
     // Allows use of Truffle framework from Java code.
-    implementation group: 'org.graalvm.nativeimage', name: 'svm', version: '21.0.0.2'
+    compileOnly group: 'org.graalvm.nativeimage', name: 'svm', version: '21.0.0.2'
 }
