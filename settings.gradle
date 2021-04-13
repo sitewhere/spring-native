@@ -7,7 +7,9 @@ pluginManagement {
 
 rootProject.name = 'spring-native'
 include ':hello-world'
+include ':keycloak-api'
 include ':truffle-javascript'
 
 project(':hello-world').projectDir = "$rootDir/hello-world" as File
+project(':keycloak-api').projectDir = "$rootDir/keycloak-api" as File
 project(':truffle-javascript').projectDir = "$rootDir/truffle-javascript" as File

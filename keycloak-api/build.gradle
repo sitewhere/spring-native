@@ -1,0 +1,22 @@
+description = 'Keycloak API Example'
+
+apply plugin: 'org.springframework.boot'
+springBoot  {
+    mainClass = 'com.sitewhere.KeycloakApiApplication'
+}
+
+apply plugin: 'org.springframework.experimental.aot'
+bootBuildImage {
+    imageName = "docker.io/sitewhere/${project.name}:${project. version}"
+    builder = "paketobuildpacks/builder:tiny"
+    environment = [
+        "BP_NATIVE_IMAGE" : "true",
+        "BP_NATIVE_IMAGE_BUILD_ARGUMENTS" : '-H:+ReportExceptionStackTraces --verbose --enable-https'
+    ]
+}
+
+dependencies {
+    implementation 'org.springframework.boot:spring-boot-starter'
+    
+    implementation group: 'org.keycloak', name: 'keycloak-admin-client', version: '11.0.3'
+}
