@@ -1,0 +1,60 @@
+description = 'GRPC Client/Server Example'
+
+apply plugin: 'com.google.protobuf'
+protobuf {
+
+    protoc {
+        artifact = "com.google.protobuf:protoc:3.15.8"
+    }
+
+    // Add GRPC plugin.
+    plugins {
+        grpc {
+            artifact = "io.grpc:protoc-gen-grpc-java:1.37.0"
+        }
+    }
+
+    // Choose which tasks are executed.
+    generateProtoTasks {
+        all().each { task ->
+            task.plugins {
+                grpc {}
+            }
+        }
+    }
+
+    generatedFilesBaseDir = "$projectDir/src/generated"
+}
+
+apply plugin: 'eclipse'
+eclipse.classpath.file.whenMerged {
+    def grpc = new org.gradle.plugins.ide.eclipse.model.SourceFolder('src/generated/main/grpc', null)
+    grpc.getEntryAttributes().put("ignore_optional_problems", "true")
+    entries += grpc
+    def gjava = new org.gradle.plugins.ide.eclipse.model.SourceFolder('src/generated/main/java', null)
+    gjava.getEntryAttributes().put("ignore_optional_problems", "true")
+    entries += gjava
+}
+
+apply plugin: 'org.springframework.boot'
+springBoot  {
+    mainClass = 'com.sitewhere.GrpcClientServerApplication'
+}
+
+apply plugin: 'org.springframework.experimental.aot'
+bootBuildImage {
+    imageName = "docker.io/sitewhere/${project.name}:${project. version}"
+    builder = "paketobuildpacks/builder:tiny"
+    environment = [
+        "BP_NATIVE_IMAGE" : "true",
+        "BP_NATIVE_IMAGE_BUILD_ARGUMENTS" : '-H:+ReportExceptionStackTraces --verbose --enable-https'
+    ]
+}
+
+dependencies {
+    implementation 'org.springframework.boot:spring-boot-starter'
+    
+    implementation group: 'io.grpc', name: 'grpc-stub', version: '1.37.0'
+    implementation group: 'io.grpc', name: 'grpc-protobuf', version: '1.37.0'
+    implementation group: 'io.grpc', name: 'grpc-netty', version: '1.37.0'
+}

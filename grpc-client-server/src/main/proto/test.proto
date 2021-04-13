@@ -1,0 +1,22 @@
+syntax = "proto3";
+
+package com.sitewhere.grpc.test;
+
+option java_multiple_files = true;
+option java_package = "com.sitewhere.grpc.test";
+option java_outer_classname = "TestServices";
+
+import "test-model.proto";
+
+service LocationService {
+    rpc GetLocation (GetLocationRequest) returns (GetLocationResponse) {}
+}
+
+message GetLocationRequest {
+    string name = 1;
+}
+
+// Response from creating an asset type.
+message GetLocationResponse {
+    com.sitewhere.grpc.test.model.NamedLocation location = 1;
+}

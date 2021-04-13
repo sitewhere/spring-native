@@ -1,0 +1,11 @@
+syntax = "proto3";
+
+package com.sitewhere.grpc.test.model;
+
+option java_outer_classname = "TestModel";
+
+message NamedLocation {
+    string name = 1;
+    double latitude = 2;
+    double longitude = 3;
+}
