@@ -1,0 +1,10 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: spring-native
+spec:
+  serviceAccountName: springnative
+  containers:
+  - name: native
+    image: docker.io/sitewhere/kubernetes-client:1.0.0
+    

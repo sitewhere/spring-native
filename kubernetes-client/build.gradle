@@ -1,0 +1,23 @@
+description = 'Kubernetes Client Example'
+
+apply plugin: 'org.springframework.boot'
+springBoot  {
+    mainClass = 'com.sitewhere.KubernetesClientApplication'
+}
+
+apply plugin: 'org.springframework.experimental.aot'
+bootBuildImage {
+    imageName = "docker.io/sitewhere/${project.name}:${project. version}"
+    builder = "paketobuildpacks/builder:tiny"
+    environment = [
+        "BP_NATIVE_IMAGE" : "true",
+        "BP_NATIVE_IMAGE_BUILD_ARGUMENTS" : "-H:+ReportExceptionStackTraces --verbose -H:+AddAllCharsets --enable-https"
+    ]
+}
+
+dependencies {
+    implementation 'org.springframework.boot:spring-boot-starter'
+            
+    // Fabric8 Kuberentes client.
+    compile group: 'io.fabric8', name: 'kubernetes-client', version: '4.13.0'
+}
