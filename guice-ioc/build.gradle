@@ -1,0 +1,22 @@
+description = 'Guice IOC Example'
+
+apply plugin: 'org.springframework.boot'
+springBoot  {
+    mainClass = 'com.sitewhere.GuiceIocApplication'
+}
+
+apply plugin: 'org.springframework.experimental.aot'
+bootBuildImage {
+    imageName = "docker.io/sitewhere/${project.name}:${project. version}"
+    builder = "paketobuildpacks/builder:tiny"
+    environment = [
+        "BP_NATIVE_IMAGE" : "true",
+        "BP_NATIVE_IMAGE_BUILD_ARGUMENTS" : "-H:+ReportExceptionStackTraces --verbose -H:+AddAllCharsets --enable-https --language:js"
+    ]
+}
+
+dependencies {
+    implementation 'org.springframework.boot:spring-boot-starter'
+
+    implementation group: 'com.google.inject', name: 'guice', version: '4.2.2'
+}

@@ -7,6 +7,7 @@ pluginManagement {
 
 rootProject.name = 'spring-native'
 include ':grpc-client-server'
+include ':guice-ioc'
 include ':hello-world'
 include ':keycloak-api'
 include ':kubernetes-client'
@@ -15,6 +16,7 @@ include ':simple-microservice'
 include ':truffle-javascript'
 
 project(':grpc-client-server').projectDir = "$rootDir/grpc-client-server" as File
+project(':guice-ioc').projectDir = "$rootDir/guice-ioc" as File
 project(':hello-world').projectDir = "$rootDir/hello-world" as File
 project(':keycloak-api').projectDir = "$rootDir/keycloak-api" as File
 project(':kubernetes-client').projectDir = "$rootDir/kubernetes-client" as File
