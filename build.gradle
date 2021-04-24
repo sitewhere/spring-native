@@ -1,6 +1,6 @@
 plugins {
-    id 'org.springframework.boot' version '2.4.4' apply false
-    id 'org.springframework.experimental.aot' version '0.9.1' apply false
+    id 'org.springframework.boot' version '2.4.5' apply false
+    id 'org.springframework.experimental.aot' version '0.9.2' apply false
     id 'com.github.hierynomus.license' version '0.15.0' 
     id 'com.google.protobuf' version '0.8.15'
     id 'java'

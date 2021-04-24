@@ -1,8 +1,8 @@
-description = 'Kubernetes Client Example'
+description = 'Prometheus Server Example'
 
 apply plugin: 'org.springframework.boot'
 springBoot  {
-    mainClass = 'com.sitewhere.KubernetesClientApplication'
+    mainClass = 'com.sitewhere.PrometheusServerApplication'
 }
 
 apply plugin: 'org.springframework.experimental.aot'
@@ -17,7 +17,7 @@ bootBuildImage {
 
 dependencies {
     implementation 'org.springframework.boot:spring-boot-starter'
-            
-    // Fabric8 Kuberentes client.
-    compile group: 'io.fabric8', name: 'kubernetes-client', version: '4.13.0'
+
+    implementation group: 'io.prometheus', name: 'simpleclient', version:'0.10.0'
+    implementation group: 'io.prometheus', name: 'simpleclient_httpserver', version:'0.10.0'
 }

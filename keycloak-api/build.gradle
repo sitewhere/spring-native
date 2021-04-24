@@ -11,7 +11,7 @@ bootBuildImage {
     builder = "paketobuildpacks/builder:tiny"
     environment = [
         "BP_NATIVE_IMAGE" : "true",
-        "BP_NATIVE_IMAGE_BUILD_ARGUMENTS" : '-H:+ReportExceptionStackTraces --verbose --enable-https'
+        "BP_NATIVE_IMAGE_BUILD_ARGUMENTS" : '-H:+ReportExceptionStackTraces --verbose --enable-https --language:js'
     ]
 }
 

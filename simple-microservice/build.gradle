@@ -1,8 +1,8 @@
-description = 'Kubernetes Client Example'
+description = 'Simple Microservice Example'
 
 apply plugin: 'org.springframework.boot'
 springBoot  {
-    mainClass = 'com.sitewhere.KubernetesClientApplication'
+    mainClass = 'com.sitewhere.SimpleMicroserviceApplication'
 }
 
 apply plugin: 'org.springframework.experimental.aot'
@@ -16,8 +16,5 @@ bootBuildImage {
 }
 
 dependencies {
-    implementation 'org.springframework.boot:spring-boot-starter'
-            
-    // Fabric8 Kuberentes client.
-    compile group: 'io.fabric8', name: 'kubernetes-client', version: '4.13.0'
+    implementation 'com.sitewhere:sitewhere-microservice:3.1.0'
 }
